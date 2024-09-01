@@ -63,7 +63,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_cyan, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "xfce4-terminal", NULL };
-static const char *clipcmd[] = { "clipmenu", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_cyan, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *clipcmd[] = { "clipmenu", NULL };
 
 #include <X11/XF86keysym.h>
 
@@ -71,8 +71,8 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,       		XK_Escape, spawn,	   SHCMD("[ \"$(printf \"No\\nYes\" | dmenu -fn \"Hack:size=11\" -nb \"#222222\" -nf \"#FF4019\" -sb \"#FF4019\" -sf \"#000000\" -i -p \"Shutdown computer?\")\" = Yes ] && shutdown -h now") },
-	{ MODKEY|ShiftMask,		XK_Escape, spawn,	   SHCMD("[ \"$(printf \"No\\nYes\" | dmenu -fn \"Hack:size=11\" -nb \"#222222\" -nf \"#FF4019\" -sb \"#FF4019\" -sf \"#000000\" -i -p \"Reboot computer?\")\" = Yes ] && shutdown -r now") },
+	{ MODKEY,       		XK_Escape, spawn,	   SHCMD("[ \"$(printf \"No\\nYes\" | dmenu -i -p \"Shutdown computer?\")\" = Yes ] && shutdown -h now") },
+	{ MODKEY|ShiftMask,		XK_Escape, spawn,	   SHCMD("[ \"$(printf \"No\\nYes\" | dmenu -i -p \"Reboot computer?\")\" = Yes ] && shutdown -r now") },
 	{ MODKEY,			XK_b,	   spawn,          SHCMD("~/Descargas/waterfox/waterfox") },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("brave") },
 	{ MODKEY,                       XK_o,      togglebar,      {0} },
